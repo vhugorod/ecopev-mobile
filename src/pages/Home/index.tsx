@@ -8,7 +8,7 @@ const Home = () => {
   const navigation = useNavigation();
 
   function handleNavigateToPoints() {
-    navigation.navigate('Points')
+    navigation.navigate('Points');
   }
 
   return (
