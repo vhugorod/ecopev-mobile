@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Constants from 'expo-constants';
 import { Feather as Icon } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, Alert } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import { SvgUri } from 'react-native-svg';
+import * as Location from 'expo-location';
 import api from '../../services/api';
 
 interface Item {
@@ -17,7 +18,31 @@ const Points = () => {
   const [items, setItems] = useState<Item[]>([]);
   const [selectedItems, setSelectedItems] = useState<number[]>([]);
 
+  const [initialPosition, setInitialPosition] = useState<[number, number]>([0, 0]);
+
   const navigation = useNavigation();
+
+  useEffect(() => {
+    async function loadPosition() {
+      const { status } = await Location.requestPermissionsAsync();
+
+      if (status !== 'granted') {
+        Alert.alert('Ops...', 'Precisamnos de sua permissão para obter a localização');
+        return;
+      }
+
+      const location = await Location.getCurrentPositionAsync();
+
+      const { latitude, longitude } = location.coords;
+
+      setInitialPosition([
+        latitude,
+        longitude
+      ])
+    }
+    
+    loadPosition();
+  }, []);
 
   useEffect(() => {
     api.get('items').then(response => {
@@ -56,11 +81,12 @@ const Points = () => {
         <Text style={styles.description}>Encontre no mapa um ponto de coleta.</Text>
 
         <View style={styles.mapContainer}>
-          <MapView 
+          { initialPosition[0] !== 0 && (
+            <MapView 
             style={styles.map}
             initialRegion={{
-              latitude: -19.7469625,
-              longitude: -47.9713212,
+              latitude: initialPosition[0],
+              longitude: initialPosition[1],
               latitudeDelta: 0.014,
               longitudeDelta: 0.014,
             }}
@@ -79,6 +105,7 @@ const Points = () => {
               </View>  
             </Marker>
           </MapView>
+          ) } 
         </View>
       </View>
       <View style={styles.itemsContainer}>
