@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Feather as Icon, FontAwesome } from '@expo/vector-icons';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { View, StyleSheet, Text, Image, TouchableOpacity, SafeAreaView, Linking } from 'react-native';
+import { View, StyleSheet, Text, Image, TouchableOpacity, SafeAreaView, Linking, Alert, Platform } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import api from '../../services/api';
-import * as MailComposer from 'expo-mail-composer';
 
 interface Params {
   point_id: number;
@@ -19,6 +18,8 @@ interface Data {
     whatsapp: string;
     city: string;
     uf: string;
+    latitude: string;
+    longitude: string;
   };
   items: {
     title: string;
@@ -44,14 +45,11 @@ const Detail = () => {
   }
   
   function handleWhatsapp() {
-    Linking.openURL(`whatsapp://send?phone=${data.point.whatsapp}&text=Tenho interesse sobre a coleta de resíduos`);
+    Linking.openURL(`tel:${data.point.whatsapp}`);
   }
 
-  function handleComposeMail() {
-    MailComposer.composeAsync({
-      subject: 'Interesse na coleta de resíduos',
-      recipients: [data.point.email],
-    })
+  function handleDirections() {
+    Linking.openURL(`google.navigation:q=${data.point.latitude},${data.point.longitude}`);
   }
 
   if (!data.point) {
@@ -79,13 +77,13 @@ const Detail = () => {
       </View>
       <View style={styles.footer}>
         <RectButton style={styles.button} onPress={handleWhatsapp}>
-          <FontAwesome name="whatsapp" size={20} color="#FFF" />
-          <Text style={styles.buttonText}>Whatsapp</Text>
+          <FontAwesome name="phone" size={25} color="#FFF" />
+          <Text style={styles.buttonText}>Ligar</Text>
         </RectButton>
 
-        <RectButton style={styles.button} onPress={handleComposeMail}>
-          <Icon name="mail" size={20} color="#FFF" />
-          <Text style={styles.buttonText}>E-mail</Text>
+        <RectButton style={styles.button} onPress={handleDirections}>
+          <FontAwesome name="car" size={20} color="#FFF" />
+          <Text style={styles.buttonText}>Como chegar</Text>
         </RectButton>
       </View>
     </SafeAreaView>  
