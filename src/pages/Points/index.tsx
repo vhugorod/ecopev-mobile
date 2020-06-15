@@ -104,7 +104,7 @@ const Points = () => {
     <>
       <View style={styles.container}>
         <TouchableOpacity onPress={handleNavigateBack}>
-          <Icon name="arrow-left" size={20} color="#34cb79" />
+          <Icon name="arrow-left" size={20} color="#288B45" />
         </TouchableOpacity>
 
         <Text style={styles.title}>Bem vindo.</Text>
@@ -208,7 +208,7 @@ const styles = StyleSheet.create({
   mapMarkerContainer: {
     width: 90,
     height: 70,
-    backgroundColor: '#34CB79',
+    backgroundColor: '#288B45',
     flexDirection: 'column',
     borderRadius: 8,
     overflow: 'hidden',
@@ -253,7 +253,7 @@ const styles = StyleSheet.create({
   },
 
   selectedItem: {
-    borderColor: '#34CB79',
+    borderColor: '#288B45',
     borderWidth: 2,
   },
 

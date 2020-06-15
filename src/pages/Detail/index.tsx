@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Feather as Icon, FontAwesome } from '@expo/vector-icons';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { View, StyleSheet, Text, Image, TouchableOpacity, SafeAreaView, Linking, Alert, Platform } from 'react-native';
-import { RectButton } from 'react-native-gesture-handler';
+import { RectButton, ScrollView } from 'react-native-gesture-handler';
 import api from '../../services/api';
 
 interface Params {
@@ -60,20 +60,36 @@ const Detail = () => {
     <SafeAreaView style={{ flex:1 }}>
       <View style={styles.container}>
         <TouchableOpacity onPress={handleNavigateBack}>
-          <Icon name="arrow-left" size={20} color="#34cb79" />
+          <Icon name="arrow-left" size={20} color="#288B45" />
         </TouchableOpacity>
 
         <Image style={styles.pointImage} source={{ uri: data.point.image_url }} />
       
-        <Text style={styles.pointName}>{data.point.name}</Text>
-        <Text style={styles.pointItems}>
-          {data.items.map(item => item.title).join(', ')}
-        </Text>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <Text style={styles.pointName}>{data.point.name}</Text>
+          <Text style={styles.pointItems}>
+            {data.items.map(item => item.title).join(', ')}
+          </Text>
 
-        <View style={styles.address}>
-          <Text style={styles.addressTitle}>Endereço</Text>
-          <Text style={styles.addressContent}>{data.point.city}, {data.point.uf}</Text>
-        </View>
+          <View style={styles.address}>
+            <Text style={styles.addressTitle}>Dia e horário de entrega</Text>
+            <Text style={styles.addressContent}>Segunda a sexta das 08:00 às 17:00</Text>
+          </View>
+
+          <View style={styles.address}>
+            <Text style={styles.addressTitle}>Higienização</Text>
+            <Text style={styles.addressContent}>
+              .Trazer o papel seco.
+              .Lâmpadas inteiras 
+              .
+            </Text>
+          </View>
+
+          <View style={styles.address}>
+            <Text style={styles.addressTitle}>Observação</Text>
+            <Text style={styles.addressContent}>Recebemos somente lâmpadas fluorescentes e cobramos R$1,00 por lâmpada. Recebemos até 1m³ de Material de Construção.</Text>
+          </View>
+        </ScrollView>
       </View>
       <View style={styles.footer}>
         <RectButton style={styles.button} onPress={handleWhatsapp}>
@@ -106,9 +122,10 @@ const styles = StyleSheet.create({
   },
 
   pointName: {
-    color: '#322153',
+    color: '#083f44',
     fontSize: 28,
     fontFamily: 'Ubuntu_700Bold',
+    alignSelf: 'center',
     marginTop: 24,
   },
 
@@ -121,11 +138,11 @@ const styles = StyleSheet.create({
   },
 
   address: {
-    marginTop: 32,
+    marginTop: 20,
   },
   
   addressTitle: {
-    color: '#322153',
+    color: '#083f44',
     fontFamily: 'Roboto_500Medium',
     fontSize: 16,
   },
@@ -133,7 +150,7 @@ const styles = StyleSheet.create({
   addressContent: {
     fontFamily: 'Roboto_400Regular',
     lineHeight: 24,
-    marginTop: 8,
+    marginTop: 4,
     color: '#6C6C80'
   },
 
@@ -148,7 +165,7 @@ const styles = StyleSheet.create({
   
   button: {
     width: '48%',
-    backgroundColor: '#34CB79',
+    backgroundColor: '#288B45',
     borderRadius: 10,
     height: 50,
     flexDirection: 'row',

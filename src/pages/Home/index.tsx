@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    color: '#322153',
+    color: '#083f44',
     fontSize: 32,
     fontFamily: 'Ubuntu_700Bold',
     maxWidth: 260,
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
   },
 
   button: {
-    backgroundColor: '#34CB79',
+    backgroundColor: '#288B45',
     height: 60,
     flexDirection: 'row',
     borderRadius: 10,
