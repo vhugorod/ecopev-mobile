@@ -107,7 +107,7 @@ const Points = () => {
           <Icon name="arrow-left" size={20} color="#288B45" />
         </TouchableOpacity>
 
-        <Text style={styles.title}>Bem vindo.</Text>
+        <Text style={styles.title}>Bem vindo!</Text>
         <Text style={styles.description}>Encontre no mapa um ponto de coleta.</Text>
 
         <View style={styles.mapContainer}>
@@ -157,7 +157,7 @@ const Points = () => {
               onPress={() => handleSelectItem(item.id)}
               activeOpacity={0.6}
             >
-              <SvgUri width={42} height={42} uri={item.image_url} />
+              <SvgUri width={20} height={20} uri={item.image_url} />
               <Text style={styles.itemTitle}>{item.title}</Text>
             </TouchableOpacity>
           ))}
