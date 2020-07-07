@@ -29,7 +29,7 @@ const Home = () => {
         <View style={styles.main}>
           <Image source={require('../../assets/logo.png')} />
           <View>
-            <Text style={styles.title}>Reduza, Reutilize, Recicle</Text>
+            <Text style={styles.title}>Reduza Reutilize Recicle</Text>
             <Text style={styles.description}>Ajudamos pessoas a encontrarem pontos de coleta de forma eficiente.</Text>
           </View>
         </View>
@@ -84,8 +84,9 @@ const styles = StyleSheet.create({
     color: '#083f44',
     fontSize: 32,
     fontFamily: 'Ubuntu_700Bold',
-    maxWidth: 260,
+    maxWidth: 200,
     marginTop: 64,
+    lineHeight: 40,  
   },
 
   description: {

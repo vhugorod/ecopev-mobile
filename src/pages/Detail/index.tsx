@@ -73,16 +73,15 @@ const Detail = () => {
 
           <View style={styles.address}>
             <Text style={styles.addressTitle}>Dia e horário de entrega</Text>
-            <Text style={styles.addressContent}>Segunda a sexta das 08:00 às 17:00</Text>
+            <Text style={styles.addressContent}>Segunda a sexta das 08:00 às 17:00.</Text>
           </View>
 
           <View style={styles.address}>
             <Text style={styles.addressTitle}>Higienização</Text>
-            <Text style={styles.addressContent}>
-              .Trazer o papel seco.
-              .Lâmpadas inteiras 
-              .
-            </Text>
+            <Text style={styles.addressContent}>Plásticos: lave-os bem para que não fiquem restos do produto, principalmente no caso de detergentes e xampus, que podem dificultar a triagem e o aproveitamento do material.
+Vidros: lave-os bem e retire as tampas.
+Metais: latinhas de refrigerantes, cervejas e enlatados devem ser amassados ou prensados para facilitar o armazenamento.
+Papéis: podem ser guardados diretamente em sacos plásticos</Text>
           </View>
 
           <View style={styles.address}>
