@@ -14,12 +14,13 @@ interface Data {
     image: string;
     image_url: string;
     name: string;
-    email: string;
+    expedient: string;
     whatsapp: string;
     city: string;
     uf: string;
     latitude: string;
     longitude: string;
+    recommendations: string,
   };
   items: {
     title: string;
@@ -71,22 +72,14 @@ const Detail = () => {
             {data.items.map(item => item.title).join(', ')}
           </Text>
 
-          <View style={styles.address}>
-            <Text style={styles.addressTitle}>Dia e horário de entrega</Text>
-            <Text style={styles.addressContent}>Segunda a sexta das 08:00 às 17:00.</Text>
+          <View style={styles.pointInfo}>
+            <Text style={styles.infoTitle}>Dia e horário de entrega</Text>
+            <Text style={styles.infoContent}>{data.point.expedient}</Text>
           </View>
 
-          <View style={styles.address}>
-            <Text style={styles.addressTitle}>Higienização</Text>
-            <Text style={styles.addressContent}>Plásticos: lave-os bem para que não fiquem restos do produto, principalmente no caso de detergentes e xampus, que podem dificultar a triagem e o aproveitamento do material.
-Vidros: lave-os bem e retire as tampas.
-Metais: latinhas de refrigerantes, cervejas e enlatados devem ser amassados ou prensados para facilitar o armazenamento.
-Papéis: podem ser guardados diretamente em sacos plásticos</Text>
-          </View>
-
-          <View style={styles.address}>
-            <Text style={styles.addressTitle}>Observação</Text>
-            <Text style={styles.addressContent}>Recebemos somente lâmpadas fluorescentes e cobramos R$1,00 por lâmpada. Recebemos até 1m³ de Material de Construção.</Text>
+          <View style={styles.pointInfo}>
+            <Text style={styles.infoTitle}>Recomendações</Text>
+            <Text style={styles.infoContent}>{data.point.recommendations}</Text>
           </View>
         </ScrollView>
       </View>
@@ -122,9 +115,12 @@ const styles = StyleSheet.create({
 
   pointName: {
     color: '#083f44',
-    fontSize: 28,
+    fontSize: 24,
     fontFamily: 'Ubuntu_700Bold',
     alignSelf: 'center',
+    alignContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
     marginTop: 24,
   },
 
@@ -136,17 +132,17 @@ const styles = StyleSheet.create({
     color: '#6C6C80'
   },
 
-  address: {
+  pointInfo: {
     marginTop: 20,
   },
   
-  addressTitle: {
+  infoTitle: {
     color: '#083f44',
     fontFamily: 'Roboto_500Medium',
     fontSize: 16,
   },
 
-  addressContent: {
+  infoContent: {
     fontFamily: 'Roboto_400Regular',
     lineHeight: 24,
     marginTop: 4,

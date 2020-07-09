@@ -178,6 +178,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: 'Ubuntu_700Bold',
     marginTop: 24,
+    color: '#083f44',
   },
 
   description: {
@@ -210,7 +211,7 @@ const styles = StyleSheet.create({
     height: 70,
     backgroundColor: '#288B45',
     flexDirection: 'column',
-    borderRadius: 8,
+    borderRadius: 10,
     overflow: 'hidden',
     alignItems: 'center'
   },
@@ -225,7 +226,7 @@ const styles = StyleSheet.create({
     flex: 1,
     fontFamily: 'Roboto_400Regular',
     color: '#FFF',
-    fontSize: 13,
+    fontSize: 8,
     lineHeight: 23,
   },
 

@@ -124,6 +124,7 @@ const styles = StyleSheet.create({
   buttonIcon: {
     height: 60,
     width: 60,
+    borderRadius: 10,
     backgroundColor: 'rgba(0, 0, 0, 0.1)',
     justifyContent: 'center',
     alignItems: 'center'
