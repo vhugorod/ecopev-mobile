@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Feather as Icon } from '@expo/vector-icons';
-import { View, ImageBackground, Image, StyleSheet, Text, KeyboardAvoidingView, Platform } from 'react-native';
+import { View, ImageBackground, Image, Text } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 import RNPickerSelect from 'react-native-picker-select';
 import axios from 'axios';
+
+import styles from './styles';
 
 interface IBGEUFResponse {
   sigla: string;
@@ -44,6 +46,10 @@ const Home = () => {
 
   function handleNavigateToPoints() {
 
+    if (selectedUf === '0' || selectedCity === '0') {
+      return;
+    }
+
     navigation.navigate('Points', {
       uf: selectedUf,
       city: selectedCity
@@ -51,10 +57,6 @@ const Home = () => {
   };
 
   return (
-    <KeyboardAvoidingView 
-      style={{ flex: 1 }} 
-      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-    >
       <ImageBackground 
         source={require('../../assets/home-background.png')} 
         style={styles.container}
@@ -64,7 +66,7 @@ const Home = () => {
           <Image source={require('../../assets/logo.png')} />
           <View>
             <Text style={styles.title}>Reduza Reutilize Recicle</Text>
-            <Text style={styles.description}>Ajudamos pessoas a encontrarem pontos de coleta de forma eficiente.</Text>
+            <Text style={styles.description}>Ajudamos pessoas a encontrarem pontos de coleta de forma simples.</Text>
           </View>
         </View>
 
@@ -91,24 +93,24 @@ const Home = () => {
           />
           
           <RNPickerSelect 
-          style={{
-            inputAndroid: {
-              height: 60,
-              backgroundColor: '#FFF',
-              borderRadius: 10,
-              marginBottom: 8,
-              paddingHorizontal: 24,
-              fontSize: 16,
-            }
-          }}
-          placeholder={{
-            label: 'Selecione uma cidade',
-            value: null
-          }}
-          onValueChange={value => setSelectedCity(value)}
-          items={cities.map(city => (
-            { label: city, value: city }
-          ))}
+            style={{
+              inputAndroid: {
+                height: 60,
+                backgroundColor: '#FFF',
+                borderRadius: 10,
+                marginBottom: 8,
+                paddingHorizontal: 24,
+                fontSize: 16,
+              }
+            }}
+            placeholder={{
+              label: 'Selecione uma cidade',
+              value: null
+            }}
+            onValueChange={value => setSelectedCity(value)}
+            items={cities.map(city => (
+              { label: city, value: city }
+            ))}
           />
 
           <RectButton style={styles.button} onPress={handleNavigateToPoints}>
@@ -118,84 +120,12 @@ const Home = () => {
               </Text>
             </View>
             <Text style={styles.buttonText}>
-              Entrar
+              Checar pontos de coleta
             </Text>
           </RectButton>
         </View>
       </ImageBackground>
-    </KeyboardAvoidingView>  
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 32,
-  },
-
-  main: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-
-  title: {
-    color: '#083f44',
-    fontSize: 32,
-    fontFamily: 'Ubuntu_700Bold',
-    maxWidth: 200,
-    marginTop: 64,
-    lineHeight: 40,  
-  },
-
-  description: {
-    color: '#6C6C80',
-    fontSize: 16,
-    marginTop: 16,
-    fontFamily: 'Roboto_400Regular',
-    maxWidth: 260,
-    lineHeight: 24,
-  },
-
-  footer: {},
-
-  select: {},
-
-  input: {
-    height: 60,
-    backgroundColor: '#FFF',
-    borderRadius: 10,
-    marginBottom: 8,
-    paddingHorizontal: 24,
-    fontSize: 16,
-  },
-
-  button: {
-    backgroundColor: '#288B45',
-    height: 60,
-    flexDirection: 'row',
-    borderRadius: 10,
-    overflow: 'hidden',
-    alignItems: 'center',
-    marginTop: 8,
-  },
-
-  buttonIcon: {
-    height: 60,
-    width: 60,
-    borderRadius: 10,
-    backgroundColor: 'rgba(0, 0, 0, 0.1)',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-
-  buttonText: {
-    flex: 1,
-    justifyContent: 'center',
-    textAlign: 'center',
-    color: '#FFF',
-    fontFamily: 'Roboto_500Medium',
-    fontSize: 16,
-  }
-});
 
 export default Home;
