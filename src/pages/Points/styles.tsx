@@ -8,13 +8,6 @@ const styles = StyleSheet.create({
     paddingTop: 20 + Constants.statusBarHeight,
   },
 
-  title: {
-    fontSize: 20,
-    fontFamily: 'Ubuntu_700Bold',
-    marginTop: 24,
-    color: '#083f44',
-  },
-
   description: {
     color: '#6C6C80',
     fontSize: 16,
@@ -62,6 +55,7 @@ const styles = StyleSheet.create({
     color: '#FFF',
     fontSize: 8,
     lineHeight: 23,
+    paddingHorizontal: 5,
   },
 
   itemsContainer: {
